@@ -1,6 +1,6 @@
 ﻿namespace Filmsökning
 {
-    class IdSearch
+    class Movie
     {
 
         public string Original_Title { get; set; }
@@ -20,8 +20,10 @@
 
         public int Id { get; set; }
 
+        
 
-       
+        
+
 
 
 

@@ -8,17 +8,13 @@ namespace Filmsökning
 {
     class TitleSearch
     {
-        public static List<TitleSearch> Results { get; set; }
+        public  List<Movie> Results { get; set; }
+
+
 
         //testa med api stränge och ändra i program.cs
 
-        public static void ShowTitle()
-        {
-            foreach (var item in Results)
-            {
-                Console.WriteLine(item);
-            }
-        }
+       
 
     }
 }
