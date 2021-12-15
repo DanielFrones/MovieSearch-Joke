@@ -7,6 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Filmsökning", "Filmsöknin
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{577CDD40-792E-4FFE-8D9B-5BD62F3ABBC0}"
 	ProjectSection(SolutionItems) = preProject
+		..\..\..\OneDrive\Skrivbord\index.png = ..\..\..\OneDrive\Skrivbord\index.png
 		TextFile1.txt = TextFile1.txt
 	EndProjectSection
 EndProject

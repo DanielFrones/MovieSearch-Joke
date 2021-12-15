@@ -11,13 +11,8 @@ namespace Filmsökning
 
         public static HttpClient client = new HttpClient();
 
-
-        static void Main(string[] args)
+        static async Task Mainmenu()
         {
-
-
-
-
             int userInput = 0;
             do
             {
@@ -51,7 +46,13 @@ namespace Filmsökning
 
             }
 
+        }
+        static void Main(string[] args)
+        {
 
+            Mainmenu();
+
+ 
 
 
 
@@ -87,28 +88,60 @@ namespace Filmsökning
                 var response = await client.GetAsync(uri);
 
 
-                Console.WriteLine(response);
+                //Console.WriteLine(response);
                 response.EnsureSuccessStatusCode();
                 string responseContent = await response.Content.ReadAsStringAsync();
-                Console.WriteLine(responseContent);
+                //Console.WriteLine(responseContent);
                 Movie ID = JsonConvert.DeserializeObject<Movie>(responseContent);
-                Console.WriteLine("Movie ID: " +ID.Id);
-                Console.WriteLine("Original title: " + ID.Original_Title);
-                Console.WriteLine("Overview: "+ID.Overview);
-                Console.WriteLine("Runtime: "+ID.Runtime);
-                Console.WriteLine("Release date: " +ID.Release_Date);
-                Console.WriteLine("Homepage: "+ID.Homepage);
-                Console.WriteLine("Vote ,avarage: "+ID.Vote_Avarage);
-                Console.WriteLine("Original language: " +ID.Original_Language);
-                Console.WriteLine("Poster path: " +ID.Poster_Path);
+                Console.WriteLine("Movie ID: " + ID.Id);
+                Console.WriteLine("\nOriginal title: " + ID.Original_Title);
+                Console.WriteLine("\nOverview: " + ID.Overview);
+                Console.WriteLine("\nRuntime: " + ID.Runtime);
+                Console.WriteLine("\nRelease date: " + ID.Release_Date);
+                Console.WriteLine("\nHomepage: " + ID.Homepage);
+                Console.WriteLine("\nVote ,avarage: " + ID.Vote_Avarage);
+                Console.WriteLine("\nOriginal language: " + ID.Original_Language);
+                Console.WriteLine("\nPoster path: " + $"https://image.tmdb.org/t/p/w500/{ID.Poster_Path}");
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
+                MovieSearchID();
             }
 
 
+            int userInput = 0;
+            do
+            {
 
+                Console.WriteLine("To do another search, press 1. \nTo terminate program, press 2.");
+
+
+                try
+                {
+                    userInput = Convert.ToInt32(Console.ReadLine());
+                }
+                catch (Exception e)
+                {
+                    Console.Clear();
+                    Console.WriteLine(e.Message);
+                }
+
+            }
+            while (userInput == 0 || userInput > 2);
+
+            switch (userInput)
+            {
+
+                case 1:
+                    Mainmenu();
+                    break;
+                case 2:
+                    Console.WriteLine("Bye bye..");
+                    break;
+
+
+            }
 
 
 
@@ -153,7 +186,7 @@ namespace Filmsökning
 
             foreach (var item in SearchRespons.Results)
             {
-                Console.Write("Index: "+SearchRespons.Results.IndexOf(item));
+                Console.Write("Index: " + SearchRespons.Results.IndexOf(item));
                 Console.WriteLine(" , Title: " + item.Original_Title + ", MovieID: " + item.Id);
                 //Fungerar inte att skriva med index i text...
 
@@ -176,12 +209,55 @@ namespace Filmsökning
                 }
             }
 
-            
+
             Console.Clear();
             Console.WriteLine("You've chosen:");
             Console.WriteLine(SearchRespons.Results[ID].Original_Title);
+            Console.WriteLine("For aditional information regarding the movie, press any key.");
+            Console.ReadKey();
+            Console.WriteLine("\nOriginal title: " + SearchRespons.Results[ID].Original_Title);
+            Console.WriteLine("\nOverview: " + SearchRespons.Results[ID].Overview);
+            Console.WriteLine("\nRuntime: " + SearchRespons.Results[ID].Runtime);
+            Console.WriteLine("\nRelease date: " + SearchRespons.Results[ID].Release_Date);
+            Console.WriteLine("\nHomepage: " + SearchRespons.Results[ID].Homepage);
+            Console.WriteLine("\nVote ,avarage: " + SearchRespons.Results[ID].Vote_Avarage);
+            Console.WriteLine("\nOriginal language: " + SearchRespons.Results[ID].Original_Language);
+            Console.WriteLine("\nPoster path: " + $"https://image.tmdb.org/t/p/w500/{SearchRespons.Results[ID].Poster_Path}");
 
 
+            
+            int userInput = 0;
+            do
+            {
+
+                Console.WriteLine("To do another search, press 1. \nTo terminate program, press 2.");
+
+
+                try
+                {
+                    userInput = Convert.ToInt32(Console.ReadLine());
+                }
+                catch (Exception e)
+                {
+                    Console.Clear();
+                    Console.WriteLine(e.Message);
+                }
+
+            }
+            while (userInput == 0 || userInput > 2);
+
+            switch (userInput)
+            {
+
+                case 1:
+                    Mainmenu();
+                    break;
+                case 2:
+                    Console.WriteLine("Bye bye..");
+                    break;
+
+
+            }
 
             //TitleSearch.Results.Add(Results);
 
