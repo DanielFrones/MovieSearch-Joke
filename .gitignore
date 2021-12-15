@@ -363,4 +363,4 @@ MigrationBackup/
 FodyWeavers.xsd
 .env
 
-git rm --cached .env
+
